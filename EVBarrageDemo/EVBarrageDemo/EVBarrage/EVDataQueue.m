@@ -8,17 +8,18 @@
 
 #import "EVDataQueue.h"
 
-static const dispatch_time_t TIME_OUT = 2;
+static const dispatch_time_t TIME_OUT = 0.5; //信号量超时时间(单位：s)
 
 @interface EVDataQueue ()
 {
-    void ** _buffer;
+    void ** _buffer; //二级指针，用来保存队列中所有的对象指针
     
-    int _front;
-    int _rear;
+    int _front; //指向对首
+    int _rear; //指向对尾
     
-    int _maxCapacity;
-    dispatch_semaphore_t _semaphore;
+    int _currentCapacity; //当前队列最大容量
+    int _maxCapacity; //当前队列最大可扩展容量
+    dispatch_semaphore_t _semaphore; //信号量，用来保证线程安全
 }
 
 @end
@@ -34,7 +35,11 @@ static const dispatch_time_t TIME_OUT = 2;
         _front = 0;
         _rear = 0;
         
-        _buffer = calloc(_maxCapacity, sizeof(void *));
+        _currentCapacity = 100;
+        if (_currentCapacity >= _maxCapacity) {
+            _currentCapacity = _maxCapacity;
+        }
+        _buffer = calloc(_currentCapacity, sizeof(void *));
     }
     return self;
 }
