@@ -1,0 +1,384 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E1F70902296385600D2C0AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F708F2296385600D2C0AE /* AppDelegate.m */; };
+		3E1F70932296385600D2C0AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F70922296385600D2C0AE /* ViewController.m */; };
+		3E1F70962296385600D2C0AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F70942296385600D2C0AE /* Main.storyboard */; };
+		3E1F70982296385700D2C0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F70972296385700D2C0AE /* Assets.xcassets */; };
+		3E1F709B2296385700D2C0AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F70992296385700D2C0AE /* LaunchScreen.storyboard */; };
+		3E1F709E2296385700D2C0AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F709D2296385700D2C0AE /* main.m */; };
+		3E1F70AA22963EDC00D2C0AE /* EVBarrageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F70A922963EDC00D2C0AE /* EVBarrageManager.m */; };
+		3E1F70AD229640C800D2C0AE /* EVBarrageDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F70AC229640C800D2C0AE /* EVBarrageDisplayView.m */; };
+		3E1F70B0229640F800D2C0AE /* EVBarrageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F70AF229640F800D2C0AE /* EVBarrageConfiguration.m */; };
+		3E1F70B32296416200D2C0AE /* EVBarrageDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F70B22296416200D2C0AE /* EVBarrageDataCenter.m */; };
+		3E93A37C2297856C00771F84 /* EVDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E93A37B2297856C00771F84 /* EVDataQueue.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3E1F708B2296385600D2C0AE /* EVBarrageDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EVBarrageDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E1F708E2296385600D2C0AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3E1F708F2296385600D2C0AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3E1F70912296385600D2C0AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3E1F70922296385600D2C0AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3E1F70952296385600D2C0AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3E1F70972296385700D2C0AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E1F709A2296385700D2C0AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3E1F709C2296385700D2C0AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E1F709D2296385700D2C0AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3E1F70A822963EDC00D2C0AE /* EVBarrageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBarrageManager.h; sourceTree = "<group>"; };
+		3E1F70A922963EDC00D2C0AE /* EVBarrageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVBarrageManager.m; sourceTree = "<group>"; };
+		3E1F70AB229640C800D2C0AE /* EVBarrageDisplayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBarrageDisplayView.h; sourceTree = "<group>"; };
+		3E1F70AC229640C800D2C0AE /* EVBarrageDisplayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVBarrageDisplayView.m; sourceTree = "<group>"; };
+		3E1F70AE229640F800D2C0AE /* EVBarrageConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBarrageConfiguration.h; sourceTree = "<group>"; };
+		3E1F70AF229640F800D2C0AE /* EVBarrageConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVBarrageConfiguration.m; sourceTree = "<group>"; };
+		3E1F70B12296416200D2C0AE /* EVBarrageDataCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBarrageDataCenter.h; sourceTree = "<group>"; };
+		3E1F70B22296416200D2C0AE /* EVBarrageDataCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVBarrageDataCenter.m; sourceTree = "<group>"; };
+		3E1F70B42296417E00D2C0AE /* EVBarrageDataCenterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBarrageDataCenterProtocol.h; sourceTree = "<group>"; };
+		3E93A37922968A5D00771F84 /* EVBarrageDisplayViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBarrageDisplayViewProtocol.h; sourceTree = "<group>"; };
+		3E93A37A2297856C00771F84 /* EVDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVDataQueue.h; sourceTree = "<group>"; };
+		3E93A37B2297856C00771F84 /* EVDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVDataQueue.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E1F70882296385600D2C0AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E1F70822296385600D2C0AE = {
+			isa = PBXGroup;
+			children = (
+				3E1F708D2296385600D2C0AE /* EVBarrageDemo */,
+				3E1F708C2296385600D2C0AE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E1F708C2296385600D2C0AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E1F708B2296385600D2C0AE /* EVBarrageDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E1F708D2296385600D2C0AE /* EVBarrageDemo */ = {
+			isa = PBXGroup;
+			children = (
+				3E1F70A42296389E00D2C0AE /* EVBarrage */,
+				3E1F708E2296385600D2C0AE /* AppDelegate.h */,
+				3E1F708F2296385600D2C0AE /* AppDelegate.m */,
+				3E1F70912296385600D2C0AE /* ViewController.h */,
+				3E1F70922296385600D2C0AE /* ViewController.m */,
+				3E1F70942296385600D2C0AE /* Main.storyboard */,
+				3E1F70972296385700D2C0AE /* Assets.xcassets */,
+				3E1F70992296385700D2C0AE /* LaunchScreen.storyboard */,
+				3E1F709C2296385700D2C0AE /* Info.plist */,
+				3E1F709D2296385700D2C0AE /* main.m */,
+			);
+			path = EVBarrageDemo;
+			sourceTree = "<group>";
+		};
+		3E1F70A42296389E00D2C0AE /* EVBarrage */ = {
+			isa = PBXGroup;
+			children = (
+				3E1F70A822963EDC00D2C0AE /* EVBarrageManager.h */,
+				3E1F70A922963EDC00D2C0AE /* EVBarrageManager.m */,
+				3E1F70AB229640C800D2C0AE /* EVBarrageDisplayView.h */,
+				3E1F70AC229640C800D2C0AE /* EVBarrageDisplayView.m */,
+				3E1F70AE229640F800D2C0AE /* EVBarrageConfiguration.h */,
+				3E1F70AF229640F800D2C0AE /* EVBarrageConfiguration.m */,
+				3E1F70B12296416200D2C0AE /* EVBarrageDataCenter.h */,
+				3E1F70B22296416200D2C0AE /* EVBarrageDataCenter.m */,
+				3E1F70B42296417E00D2C0AE /* EVBarrageDataCenterProtocol.h */,
+				3E93A37922968A5D00771F84 /* EVBarrageDisplayViewProtocol.h */,
+				3E93A37A2297856C00771F84 /* EVDataQueue.h */,
+				3E93A37B2297856C00771F84 /* EVDataQueue.m */,
+			);
+			path = EVBarrage;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E1F708A2296385600D2C0AE /* EVBarrageDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E1F70A12296385700D2C0AE /* Build configuration list for PBXNativeTarget "EVBarrageDemo" */;
+			buildPhases = (
+				3E1F70872296385600D2C0AE /* Sources */,
+				3E1F70882296385600D2C0AE /* Frameworks */,
+				3E1F70892296385600D2C0AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EVBarrageDemo;
+			productName = EVBarrageDemo;
+			productReference = 3E1F708B2296385600D2C0AE /* EVBarrageDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E1F70832296385600D2C0AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = Ever;
+				TargetAttributes = {
+					3E1F708A2296385600D2C0AE = {
+						CreatedOnToolsVersion = 10.2;
+					};
+				};
+			};
+			buildConfigurationList = 3E1F70862296385600D2C0AE /* Build configuration list for PBXProject "EVBarrageDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3E1F70822296385600D2C0AE;
+			productRefGroup = 3E1F708C2296385600D2C0AE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E1F708A2296385600D2C0AE /* EVBarrageDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E1F70892296385600D2C0AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1F709B2296385700D2C0AE /* LaunchScreen.storyboard in Resources */,
+				3E1F70982296385700D2C0AE /* Assets.xcassets in Resources */,
+				3E1F70962296385600D2C0AE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E1F70872296385600D2C0AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1F70932296385600D2C0AE /* ViewController.m in Sources */,
+				3E1F70AA22963EDC00D2C0AE /* EVBarrageManager.m in Sources */,
+				3E93A37C2297856C00771F84 /* EVDataQueue.m in Sources */,
+				3E1F70B32296416200D2C0AE /* EVBarrageDataCenter.m in Sources */,
+				3E1F70B0229640F800D2C0AE /* EVBarrageConfiguration.m in Sources */,
+				3E1F70AD229640C800D2C0AE /* EVBarrageDisplayView.m in Sources */,
+				3E1F709E2296385700D2C0AE /* main.m in Sources */,
+				3E1F70902296385600D2C0AE /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3E1F70942296385600D2C0AE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E1F70952296385600D2C0AE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3E1F70992296385700D2C0AE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E1F709A2296385700D2C0AE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3E1F709F2296385700D2C0AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3E1F70A02296385700D2C0AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E1F70A22296385700D2C0AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93UHHK2WBX;
+				INFOPLIST_FILE = EVBarrageDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eversoft.EVBarrageDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E1F70A32296385700D2C0AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93UHHK2WBX;
+				INFOPLIST_FILE = EVBarrageDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eversoft.EVBarrageDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E1F70862296385600D2C0AE /* Build configuration list for PBXProject "EVBarrageDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E1F709F2296385700D2C0AE /* Debug */,
+				3E1F70A02296385700D2C0AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E1F70A12296385700D2C0AE /* Build configuration list for PBXNativeTarget "EVBarrageDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E1F70A22296385700D2C0AE /* Debug */,
+				3E1F70A32296385700D2C0AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E1F70832296385600D2C0AE /* Project object */;
+}
