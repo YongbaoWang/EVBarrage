@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "EVBarrage/EVDataQueue.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) NSObject *A;
 
 @end
 
@@ -17,6 +20,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+
+    
+//    void **arr = calloc(100, sizeof(void *));
+//    void *p = (__bridge void *)(application);
+//    arr[0] = p;
+    
+//    NSObject *obj = [NSObject new];
+//
+//    EVDataQueue<NSObject *> *queue = [[EVDataQueue alloc] initWithMaxCapacity:10];
+//    [queue push:obj];
+//
+//    NSObject *o = queue.pop;
+//
+//    CFIndex index = CFGetRetainCount((__bridge CFTypeRef)(o));
+//    NSLog(@"%d",index);
+    
+    
     return YES;
 }
 

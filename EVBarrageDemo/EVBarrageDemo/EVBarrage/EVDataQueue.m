@@ -12,7 +12,7 @@ static const dispatch_time_t TIME_OUT = 2;
 
 @interface EVDataQueue ()
 {
-    void * _buffer[10000000];
+    void ** _buffer;
     
     int _front;
     int _rear;
@@ -33,6 +33,8 @@ static const dispatch_time_t TIME_OUT = 2;
         
         _front = 0;
         _rear = 0;
+        
+        _buffer = calloc(_maxCapacity, sizeof(void *));
     }
     return self;
 }
@@ -76,7 +78,7 @@ static const dispatch_time_t TIME_OUT = 2;
     }
     void *p = _buffer[_front];
     id obj = (__bridge_transfer id)p;
-    
+
     _front = (_front + 1) % _maxCapacity;
     
 //    dispatch_semaphore_signal(_semaphore);
@@ -84,5 +86,13 @@ static const dispatch_time_t TIME_OUT = 2;
     return obj;
 }
 
+- (void)compact {
+    
+}
+
+- (void)freeAll {
+    free(_buffer);
+    _buffer = NULL;
+}
 
 @end

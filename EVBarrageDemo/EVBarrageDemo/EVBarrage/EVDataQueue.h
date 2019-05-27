@@ -22,5 +22,7 @@
 
 - (BOOL)isFull;
 
+- (void)freeAll;
+
 @end
 

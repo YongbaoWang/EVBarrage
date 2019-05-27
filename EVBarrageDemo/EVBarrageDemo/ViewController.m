@@ -13,9 +13,12 @@
 @interface ViewController ()
 {
     NSPointerArray *pointerArray;
+    EVDataQueue *_queue;
 }
 @property (nonatomic, strong) UIView<EVBarrageDisplayViewProtocol> *displayView;
 @property (nonatomic, strong) id<EVBarrageDataCenterProtocol> dataCenter;
+
+@property (nonatomic, weak) id last;
 
 @end
 
@@ -34,26 +37,55 @@
     self.dataCenter = [EVBarrageManager createDataCenter];
     self.displayView.dataSource = self.dataCenter;
     
-    NSObject *obj = [NSObject new];
-    void *p1 = (__bridge_retained void *)obj;
-    pointerArray = [NSPointerArray pointerArrayWithOptions:NSPointerFunctionsWeakMemory];
-    [pointerArray addPointer:p1];
     
     
 //    [self.displayView start];
     
     CFTimeInterval start = CACurrentMediaTime();
-    int max = 10000000;
-    EVDataQueue<NSNumber *> *queue = [[EVDataQueue alloc] initWithMaxCapacity:max];
-    for (int i = 0; i < max; i++) {
-        [queue push:@(i)];
-    }
+    int max = 10000000; //10000000
+    EVDataQueue<NSObject *> *queue = [[EVDataQueue alloc] initWithMaxCapacity:max];
+    _queue = queue;
     
-    NSNumber *a = queue.pop;
-    while (a != nil) {
-//        NSLog(@"%@",a);
+    for (int i = 0; i < max; i++) {
+        NSObject *b = [NSObject new];
+        [queue push:b];
+    }
+
+    NSNumber *a;
+    for (int i = 0; i < max - 1; i++) {
         a = queue.pop;
     }
+    
+//    NSObject *b = [NSObject new];
+    self.last = a;
+
+    
+    
+//    NSMutableArray *a1 = [[NSMutableArray alloc] initWithCapacity:max];
+//    NSPointerArray *a2 = [NSPointerArray weakObjectsPointerArray];
+//    for (int i = 0; i < max; i++) {
+//        NSNumber *n1 = @(i);
+//        [a1 addObject:n1];
+////        [a2 addPointer:(__bridge void *)@(i)];
+//        [a2 insertPointer:(__bridge void *)n1 atIndex:i];
+//    }
+//
+//    for (int i = 0; i < max; i++) {
+////        id obj = a1[i];
+//        id obj = (__bridge id)[a2 pointerAtIndex:i];
+//    }
+    
+    
+//    NSMutableSet *set1 = [NSMutableSet setWithCapacity:max];
+//    for (int i = 0; i < max; i++) {
+//        [set1 addObject:@(i)];
+//    }
+    
+//    NSHashTable *ht1 = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+//    for (int i = 0; i < max; i++) {
+//        [ht1 addObject:@(i)];
+//    }
+    
     
     CFTimeInterval end = CACurrentMediaTime();
     
@@ -62,9 +94,12 @@
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    void *p = [pointerArray pointerAtIndex:0];
-    id obj = (__bridge_transfer NSObject *)p;
-    [self.displayView performSelector:NSSelectorFromString(@"test")];
+//        NSNumber *a = _queue.pop;
+//        while (a != nil) {
+//            NSLog(@"%@",a);
+//            a = _queue.pop;
+//        }
+    [_queue freeAll];
 }
 
 - (BOOL)shouldAutorotate {
