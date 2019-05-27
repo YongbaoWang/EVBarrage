@@ -12,7 +12,7 @@ static const dispatch_time_t TIME_OUT = 2;
 
 @interface EVDataQueue ()
 {
-    int * _buffer;
+    void * _buffer[10000000];
     
     int _front;
     int _rear;
@@ -33,8 +33,6 @@ static const dispatch_time_t TIME_OUT = 2;
         
         _front = 0;
         _rear = 0;
-        
-        _buffer = calloc(10000000, sizeof(void *));
     }
     return self;
 }
@@ -54,28 +52,26 @@ static const dispatch_time_t TIME_OUT = 2;
 }
 
 - (BOOL)push:(id)obj {
-    dispatch_semaphore_wait(_semaphore, TIME_OUT);
+//    dispatch_semaphore_wait(_semaphore, TIME_OUT);
     
     if ([self isFull]) {
-        dispatch_semaphore_signal(_semaphore);
+//        dispatch_semaphore_signal(_semaphore);
         return NO;
     }
     void *p = (__bridge_retained void *)obj;
-//    *(_buffer + (_rear % _maxCapacity)) = p;
     _buffer[_rear % _maxCapacity] = p;
-    
     _rear = (_rear + 1) % _maxCapacity;
     
-    dispatch_semaphore_signal(_semaphore);
+//    dispatch_semaphore_signal(_semaphore);
     
     return YES;
 }
 
 - (id)pop {
-    dispatch_semaphore_wait(_semaphore, TIME_OUT);
+//    dispatch_semaphore_wait(_semaphore, TIME_OUT);
     
     if ([self isEmpty]) {
-        dispatch_semaphore_signal(_semaphore);
+//        dispatch_semaphore_signal(_semaphore);
         return nil;
     }
     void *p = _buffer[_front];
@@ -83,7 +79,7 @@ static const dispatch_time_t TIME_OUT = 2;
     
     _front = (_front + 1) % _maxCapacity;
     
-    dispatch_semaphore_signal(_semaphore);
+//    dispatch_semaphore_signal(_semaphore);
     
     return obj;
 }
