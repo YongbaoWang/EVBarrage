@@ -59,7 +59,6 @@ static const dispatch_time_t EV_QUEUE_TIME_OUT = DISPATCH_TIME_FOREVER; //信号
 }
 
 - (BOOL)enqueue:(id)obj {
-    printf("en s");
     dispatch_semaphore_wait(_semaphore, EV_QUEUE_TIME_OUT);
 
     if ([self isFull]) {
@@ -83,14 +82,11 @@ static const dispatch_time_t EV_QUEUE_TIME_OUT = DISPATCH_TIME_FOREVER; //信号
     _size++;
     
     dispatch_semaphore_signal(_semaphore);
-    printf("en end");
 
     return YES;
 }
 
 - (id)dequeue {
-    printf("de s");
-
     dispatch_semaphore_wait(_semaphore, EV_QUEUE_TIME_OUT);
 
     if ([self isEmpty]) {
@@ -100,24 +96,12 @@ static const dispatch_time_t EV_QUEUE_TIME_OUT = DISPATCH_TIME_FOREVER; //信号
     
     id obj = (__bridge_transfer id)(_front -> value);
     struct EVQueueNode *next = _front -> next;
-    _front -> value = NULL;
-    _front -> next = NULL;
     free(_front);
     _front = next;
     
     _size--;
     
-    if (_size < 0) {
-        NSLog(@"");
-    }
-    
-//    if (_front == NULL) {
-//        _rear = NULL;
-//        _size = 0;
-//    }
-    
     dispatch_semaphore_signal(_semaphore);
-    printf("de end");
 
     return obj;
 }
