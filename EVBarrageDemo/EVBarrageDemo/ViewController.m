@@ -7,18 +7,15 @@
 //
 
 #import "ViewController.h"
-#import "EVBarrage/EVBarrageManager.h"
-#import "EVBarrage/EVDataQueue.h"
+#import "EVBarrage.h"
+#import "EVBarrage/EVDataQueue/EVDataQueue.h"
 
 @interface ViewController ()
 {
-    NSPointerArray *pointerArray;
-    EVDataQueue *_queue;
+    NSOperationQueue *_queue;
+    EVDataQueue *_dataQueue;
 }
-@property (nonatomic, strong) UIView<EVBarrageDisplayViewProtocol> *displayView;
-@property (nonatomic, strong) id<EVBarrageDataCenterProtocol> dataCenter;
-
-@property (nonatomic, weak) id last;
+@property (nonatomic, strong) EVBarrage *barrage;
 
 @end
 
@@ -28,83 +25,79 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    imgView.image = [UIImage imageNamed:@"bg"];
+    [self.view addSubview:imgView];
     
-    self.displayView = [EVBarrageManager createDisplayView];
-    self.displayView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:self.displayView];
-
-    self.dataCenter = [EVBarrageManager createDataCenter];
-    self.displayView.dataSource = self.dataCenter;
-    
-    
-    
-//    [self.displayView start];
-    
-    CFTimeInterval start = CACurrentMediaTime();
-    int max = 10000000; //10000000
-    EVDataQueue<NSObject *> *queue = [[EVDataQueue alloc] initWithMaxCapacity:max];
-    _queue = queue;
-    
-    for (int i = 0; i < max; i++) {
-        NSObject *b = [NSObject new];
-        [queue push:b];
-    }
-
-    NSNumber *a;
-    for (int i = 0; i < max - 1; i++) {
-        a = queue.pop;
-    }
-    
-//    NSObject *b = [NSObject new];
-    self.last = a;
-
-    
-    
-//    NSMutableArray *a1 = [[NSMutableArray alloc] initWithCapacity:max];
-//    NSPointerArray *a2 = [NSPointerArray weakObjectsPointerArray];
-//    for (int i = 0; i < max; i++) {
-//        NSNumber *n1 = @(i);
-//        [a1 addObject:n1];
-////        [a2 addPointer:(__bridge void *)@(i)];
-//        [a2 insertPointer:(__bridge void *)n1 atIndex:i];
-//    }
+//    self.barrage = [[EVBarrage alloc] init];
+//    [imgView addSubview:self.barrage.displayView];
 //
-//    for (int i = 0; i < max; i++) {
-////        id obj = a1[i];
-//        id obj = (__bridge id)[a2 pointerAtIndex:i];
-//    }
+//    [self.barrage start];
+//
+//    [self addBarrage];
     
+//    _queue = [[NSOperationQueue alloc] init];
+//    _queue.maxConcurrentOperationCount = 2;
+//    NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(test) object:nil];
+//
+//    [_queue addOperation:op];
+//    [op start];
     
-//    NSMutableSet *set1 = [NSMutableSet setWithCapacity:max];
-//    for (int i = 0; i < max; i++) {
-//        [set1 addObject:@(i)];
-//    }
+    _dataQueue = [[EVDataQueue alloc] initWithMaxCapacity:10000];
+
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        while (true)
+        {
+//            for (int i = 0; i < arc4random()%100; i++) {
+//                [_dataQueue enqueue:@10];
+//                NSLog(@"en");
+//            }
+//            for (int i = 0; i < arc4random()%100; i++) {
+//                [_dataQueue dequeue];
+//                NSLog(@"dequeue");
+//            }
+            
+            [_dataQueue enqueue:@10];
+            NSLog(@"en");
+        }
+    });
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        sleep(0.5);
+        while (true)
+        {
+            [_dataQueue dequeue];
+            NSLog(@"dequeue");
+        }
+
+    });
     
-//    NSHashTable *ht1 = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
-//    for (int i = 0; i < max; i++) {
-//        [ht1 addObject:@(i)];
-//    }
-    
-    
-    CFTimeInterval end = CACurrentMediaTime();
-    
-    NSLog(@"%f",end - start);
 }
 
+- (void)test {
+    NSLog(@"test");
+}
+
+- (void)addBarrage {
+    EVBarrageModel *model = [EVBarrageModel new];
+    model.reuseIdentifier = @"other";
+    model.text = [[NSAttributedString alloc] initWithString:@"after loading the view."];
+    model.priority = EVBarragePriorityLow;
+    
+    [self.barrage addBarrage:model];
+    
+    [self performSelector:@selector(addBarrage) withObject:nil afterDelay:0.5];
+}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//        NSNumber *a = _queue.pop;
-//        while (a != nil) {
-//            NSLog(@"%@",a);
-//            a = _queue.pop;
-//        }
-    [_queue freeAll];
+    
+}
+
+- (void)dealloc {
+    NSLog(@"vc dealloc");
 }
 
 - (BOOL)shouldAutorotate {
     return YES;
 }
-
 
 @end

@@ -7,38 +7,76 @@
 //
 
 #import "AppDelegate.h"
-#import "EVBarrage/EVDataQueue.h"
+
+struct Chain {
+    struct Chain *next;
+};
 
 @interface AppDelegate ()
-
-@property (nonatomic, strong) NSObject *A;
+{
+    struct Chain *head;
+    struct Chain *rear;
+    
+    dispatch_queue_t _serialQueue;
+}
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
 
+    _serialQueue = dispatch_queue_create("com.hi.test", DISPATCH_QUEUE_SERIAL);
     
-//    void **arr = calloc(100, sizeof(void *));
-//    void *p = (__bridge void *)(application);
-//    arr[0] = p;
-    
-//    NSObject *obj = [NSObject new];
-//
-//    EVDataQueue<NSObject *> *queue = [[EVDataQueue alloc] initWithMaxCapacity:10];
-//    [queue push:obj];
-//
-//    NSObject *o = queue.pop;
-//
-//    CFIndex index = CFGetRetainCount((__bridge CFTypeRef)(o));
-//    NSLog(@"%d",index);
-    
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        while (YES) {
+//            [self add];
+//            NSLog(@"add");
+//        }
+//    });
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        while (YES) {
+//            [self remove];
+//            NSLog(@"remove");
+//        }
+//    });
     
     return YES;
+}
+
+- (void)add
+{
+    dispatch_async(_serialQueue, ^{
+        struct Chain *p = calloc(1, sizeof(struct Chain));
+        p -> next = NULL;
+        
+        if (self->head == NULL) {
+            self->head = p;
+        }
+        
+        if (self->rear == NULL) {
+            self->rear = p;
+        }
+        else {
+            self->rear -> next = p;
+            self->rear = p;
+        }
+    });
+}
+
+- (void)remove
+{
+    dispatch_async(_serialQueue, ^{
+        if (self->head != NULL) {
+            void *next = self->head -> next;
+            free(self->head);
+            self->head = next;
+        } else {
+            self->head = NULL;
+            self->rear = NULL;
+        }
+    });
 }
 
 
