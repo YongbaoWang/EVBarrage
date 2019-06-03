@@ -19,6 +19,18 @@
 
 @implementation EVBarrage
 
+- (instancetype)initWithDisplayViewFrame:(CGRect)frame {
+    self = [super init];
+    if (self) {
+        _fontSize = 16;
+        _alpha = 1;
+        _duration = 8;
+        _areaBegin = 0.1;
+        _areaEnd = 1;
+    }
+    return self;
+}
+
 - (UIView *)displayView {
     return self.containerView;
 }
@@ -45,7 +57,7 @@
 
 - (EVBarrageDataCenter *)dataCenter {
     if (!_dataCenter) {
-        _dataCenter = [[EVBarrageDataCenter alloc] initWithMaxCapacity:100];
+        _dataCenter = [[EVBarrageDataCenter alloc] initWithMaxCapacity:10000000];
     }
     return _dataCenter;
 }

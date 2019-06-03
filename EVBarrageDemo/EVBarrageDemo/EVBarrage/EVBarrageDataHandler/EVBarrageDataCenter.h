@@ -11,11 +11,6 @@
 
 @interface EVBarrageDataCenter : NSObject
 
-/**
- 弹幕轨道高度
- */
-@property (nonatomic, assign) CGFloat trackHeight;
-
 - (instancetype)init NS_UNAVAILABLE;
 
 //最大可处理弹幕数量

@@ -23,7 +23,7 @@ static const dispatch_time_t EV_QUEUE_TIME_OUT = DISPATCH_TIME_FOREVER; //信号
     int _size; //当前已使用容量
     int _maxCapacity; //当前队列最大容量
     
-    dispatch_semaphore_t _semaphore; //信号量，用来保证线程安全
+    dispatch_semaphore_t _semaphore; //信号量，用来保证线程安全; 多线程访问时，为保证读写安全，常用方案：1 加锁；2 串行队列； 当数据量较大、操作频繁时，串行队列 性能方面 不如信号量。
 }
 
 @end
@@ -119,6 +119,7 @@ static const dispatch_time_t EV_QUEUE_TIME_OUT = DISPATCH_TIME_FOREVER; //信号
         _front = _front -> next;
         free(tmp);
     }
+    _rear = NULL;
     
     dispatch_semaphore_signal(_semaphore);
 }

@@ -96,6 +96,9 @@ if (queue.size > 0) { \
 }
 
 - (id<EVBarrageModelProtocol>)nextBarrage {
+    static int n = 0;
+//    printf("已处理：%d\n",++n);
+    
     id<EVBarrageModelProtocol> model = nil;
     
     EVBarrageValidNext(self.highestQueue)

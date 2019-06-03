@@ -7,6 +7,7 @@
 //
 
 #import "EVBarrageDisplayView.h"
+#import "EVBorderLabel.h"
 
 #define EV_BARRAGE_MAIN_THREAD \
 if (![NSThread isMainThread]) { \
@@ -34,12 +35,16 @@ if ([NSThread isMainThread]) { \
     self = [super initWithFrame:frame];
     if (self) {
         _viewSize = frame.size;
-        _fontSize = 14;
+        _fontSize = 20;
         _alpha = 1;
-        _duration = 5;
-        _areaBegin = 0.1;
-        _trackHeight = 25;
-        _trackCount = floor(frame.size.height * (1 - _areaBegin) / _trackHeight);
+        _duration = 8;
+        _areaBegin = 0.15;
+        _areaEnd = 0.9;
+        _trackHeight = 30;
+        _trackCount = floor(frame.size.height * (_areaEnd - _areaBegin) / _trackHeight);
+        
+//        _trackCount = 1;
+        
         _operationQueue = [[NSOperationQueue alloc] init];
     }
     
@@ -68,23 +73,33 @@ if ([NSThread isMainThread]) { \
     EV_BARRAGE_OTHER_THREAD
     
     CGFloat x = _viewSize.width;
-    CGFloat y = _viewSize.height * self.areaBegin;
     CGFloat height = self.trackHeight;
+    CGFloat y = _viewSize.height * self.areaBegin + height * trackIndex.intValue;
+
+    CGFloat minIntervalBetweenTwoBarrage = 44; //两个弹幕之间的最小距离
+    CGFloat minTextWidth = 120 ; //弹幕的最小宽度
     
     while (YES) {
         id<EVBarrageModelProtocol> model = [self.dataCenter nextBarrage];
         if (model != nil) {
-            CGSize size = [model.text boundingRectWithSize:CGSizeMake(MAXFLOAT, height) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
+//            CGSize size = [model.text boundingRectWithSize:CGSizeMake(MAXFLOAT, height) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
+            CGSize size = [model.text.string boundingRectWithSize:CGSizeMake(MAXFLOAT, height) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:_fontSize]} context:nil].size;
+            
+            if (size.width < minTextWidth) {
+                size.width = minTextWidth;
+            }
+            
             model.startFrame = CGRectMake(x, y, size.width, height);
             model.endFrame = CGRectMake(-size.width, y, size.width, height);
             model.duration = self.duration;
-            model.delay = size.width/x * model.duration;
+            
+            model.delay = (size.width + minIntervalBetweenTwoBarrage + arc4random()%40) / ((x + size.width)/model.duration);
             
             [self animateViewWithModel:model];
             
             sleep(model.delay);
         } else {
-            sleep(3);
+            sleep(arc4random()%3 + 3);
         }
     }
 }
@@ -94,7 +109,7 @@ if ([NSThread isMainThread]) { \
         UIView *view = [self reuseViewWithModel:model];
         view.frame = model.startFrame;
         
-        [UIView animateWithDuration:model.duration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [UIView animateWithDuration:model.duration delay:0 options:UIViewAnimationOptionCurveLinear|UIViewAnimationOptionPreferredFramesPerSecond60 animations:^{
             view.frame = model.endFrame;
         } completion:^(BOOL finished) {
             [self saveReuseView:view withModel:model];
@@ -137,10 +152,13 @@ if ([NSThread isMainThread]) { \
 - (UILabel *)createLabel {
     EV_BARRAGE_MAIN_THREAD
     
-    UILabel *label = [[UILabel alloc] init];
+    EVBorderLabel *label = [[EVBorderLabel alloc] init];
     label.font = [UIFont systemFontOfSize:self.fontSize];
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentLeft;
+    label.strokeWidth = 1;
+    label.strokeColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor clearColor];
     [self addSubview:label];
     return label;
 }

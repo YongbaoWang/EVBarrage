@@ -16,6 +16,7 @@
 		3E920E8F229E5CC600923A72 /* EVBarrageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E920E8E229E5CC600923A72 /* EVBarrageModel.m */; };
 		3E920E92229E5EB500923A72 /* EVBarrageDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E920E91229E5EB500923A72 /* EVBarrageDataCenter.m */; };
 		3E93A37C2297856C00771F84 /* EVDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E93A37B2297856C00771F84 /* EVDataQueue.m */; };
+		3EA1DBCE229FBECB008F5445 /* EVBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1DBCD229FBECB008F5445 /* EVBorderLabel.m */; };
 		3EA4BE49229E72D0008B8772 /* EVBarrageDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4BE48229E72D0008B8772 /* EVBarrageDisplayView.m */; };
 		3EC92DFF229E5506003A3D70 /* EVBarrage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC92DFE229E5506003A3D70 /* EVBarrage.m */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,8 @@
 		3E920E91229E5EB500923A72 /* EVBarrageDataCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVBarrageDataCenter.m; sourceTree = "<group>"; };
 		3E93A37A2297856C00771F84 /* EVDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVDataQueue.h; sourceTree = "<group>"; };
 		3E93A37B2297856C00771F84 /* EVDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVDataQueue.m; sourceTree = "<group>"; };
+		3EA1DBCC229FBECB008F5445 /* EVBorderLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBorderLabel.h; sourceTree = "<group>"; };
+		3EA1DBCD229FBECB008F5445 /* EVBorderLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVBorderLabel.m; sourceTree = "<group>"; };
 		3EA4BE47229E72D0008B8772 /* EVBarrageDisplayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBarrageDisplayView.h; sourceTree = "<group>"; };
 		3EA4BE48229E72D0008B8772 /* EVBarrageDisplayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVBarrageDisplayView.m; sourceTree = "<group>"; };
 		3EC92DFD229E5506003A3D70 /* EVBarrage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVBarrage.h; sourceTree = "<group>"; };
@@ -126,6 +129,8 @@
 			children = (
 				3EA4BE47229E72D0008B8772 /* EVBarrageDisplayView.h */,
 				3EA4BE48229E72D0008B8772 /* EVBarrageDisplayView.m */,
+				3EA1DBCC229FBECB008F5445 /* EVBorderLabel.h */,
+				3EA1DBCD229FBECB008F5445 /* EVBorderLabel.m */,
 			);
 			path = EVBarrageDisplayView;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC92DFF229E5506003A3D70 /* EVBarrage.m in Sources */,
+				3EA1DBCE229FBECB008F5445 /* EVBorderLabel.m in Sources */,
 				3EA4BE49229E72D0008B8772 /* EVBarrageDisplayView.m in Sources */,
 				3E920E8F229E5CC600923A72 /* EVBarrageModel.m in Sources */,
 				3E1F70932296385600D2C0AE /* ViewController.m in Sources */,

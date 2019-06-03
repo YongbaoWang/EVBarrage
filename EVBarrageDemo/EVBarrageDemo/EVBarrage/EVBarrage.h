@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat areaBegin;
 @property (nonatomic, assign) CGFloat areaEnd;
 
+- (instancetype)initWithDisplayViewFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
 - (UIView *)displayView;
 
 - (void)addBarrage:(id<EVBarrageModelProtocol>)model;

@@ -20,6 +20,7 @@
 @property (nonatomic, assign) CGFloat alpha;
 @property (nonatomic, assign) CGFloat duration;
 @property (nonatomic, assign) CGFloat areaBegin;
+@property (nonatomic, assign) CGFloat areaEnd;
 @property (nonatomic, assign) CGFloat trackCount; //轨道数量
 @property (nonatomic, assign) CGFloat trackHeight; //轨道高度
 
