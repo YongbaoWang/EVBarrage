@@ -7,34 +7,39 @@
 //
 
 #import "EVBarrage.h"
-#import "EVBarrageDisplayView.h"
+#import "EVBarrageContainerView.h"
 #import "EVBarrageDataCenter.h"
 
 @interface EVBarrage ()
+{
+    CGRect _containerViewFrame;
+}
 
-@property (nonatomic, strong) EVBarrageDisplayView *containerView;
 @property (nonatomic, strong) EVBarrageDataCenter *dataCenter;
 
 @end
 
 @implementation EVBarrage
 
-- (instancetype)initWithDisplayViewFrame:(CGRect)frame {
+@synthesize containerView = _containerView;
+
+#pragma mark - INIT 
+- (instancetype)initWithContainerViewFrame:(CGRect)frame containerViewDelegate:(id<EVBarrageContainerViewDelegate>)delegate
+{
     self = [super init];
     if (self) {
-        _fontSize = 16;
-        _alpha = 1;
-        _duration = 8;
-        _areaBegin = 0.1;
+        _duration = 12;
+        _areaBegin = 0.05;
         _areaEnd = 1;
+        _trackHeight = 30;
+        _maxCapacity = 1000000;
+        _delegate = delegate;
+        _containerViewFrame = frame;
     }
     return self;
 }
 
-- (UIView *)displayView {
-    return self.containerView;
-}
-
+#pragma mark - PUBLIC API
 - (void)addBarrage:(id<EVBarrageModelProtocol>)model {
     [self.dataCenter addBarrage:model];
 }
@@ -47,9 +52,15 @@
     [self.containerView stop];
 }
 
-- (UIView *)containerView {
+#pragma mark - PROPERTY
+- (EVBarrageContainerView *)containerView {
     if (!_containerView) {
-        _containerView = [[EVBarrageDisplayView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        _containerView = [[EVBarrageContainerView alloc] initWithFrame:_containerViewFrame];
+        _containerView.duration = self.duration;
+        _containerView.areaBegin = self.areaBegin;
+        _containerView.areaEnd = self.areaEnd;
+        _containerView.trackHeight = self.trackHeight;
+        _containerView.delegate = self.delegate;
         _containerView.dataCenter = self.dataCenter;
     }
     return _containerView;
@@ -57,9 +68,28 @@
 
 - (EVBarrageDataCenter *)dataCenter {
     if (!_dataCenter) {
-        _dataCenter = [[EVBarrageDataCenter alloc] initWithMaxCapacity:10000000];
+        _dataCenter = [[EVBarrageDataCenter alloc] initWithMaxCapacity:_maxCapacity];
     }
     return _dataCenter;
+}
+
+- (void)setAreaBegin:(CGFloat)areaBegin {
+    if (areaBegin >= 1) {
+        NSAssert(false, @"areaBegin can't be more than 1.");
+    }
+    _areaBegin = areaBegin;
+}
+
+- (void)setAreaEnd:(CGFloat)areaEnd {
+    if (areaEnd <= 0) {
+        NSAssert(false, @"areaEnd can't be less than 0.");
+    }
+    _areaEnd = areaEnd;
+}
+
+- (void)setMaxCapacity:(int)maxCapacity {
+    _maxCapacity = maxCapacity;
+    _dataCenter.maxCapacity = _maxCapacity;
 }
 
 @end

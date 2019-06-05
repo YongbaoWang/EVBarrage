@@ -8,17 +8,7 @@
 
 #import "AppDelegate.h"
 
-struct Chain {
-    struct Chain *next;
-};
-
 @interface AppDelegate ()
-{
-    struct Chain *head;
-    struct Chain *rear;
-    
-    dispatch_queue_t _serialQueue;
-}
 
 @end
 
@@ -26,59 +16,9 @@ struct Chain {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-
-    _serialQueue = dispatch_queue_create("com.hi.test", DISPATCH_QUEUE_SERIAL);
-    
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        while (YES) {
-//            [self add];
-//            NSLog(@"add");
-//        }
-//    });
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        while (YES) {
-//            [self remove];
-//            NSLog(@"remove");
-//        }
-//    });
     
     return YES;
 }
-
-- (void)add
-{
-    dispatch_async(_serialQueue, ^{
-        struct Chain *p = calloc(1, sizeof(struct Chain));
-        p -> next = NULL;
-        
-        if (self->head == NULL) {
-            self->head = p;
-        }
-        
-        if (self->rear == NULL) {
-            self->rear = p;
-        }
-        else {
-            self->rear -> next = p;
-            self->rear = p;
-        }
-    });
-}
-
-- (void)remove
-{
-    dispatch_async(_serialQueue, ^{
-        if (self->head != NULL) {
-            void *next = self->head -> next;
-            free(self->head);
-            self->head = next;
-        } else {
-            self->head = NULL;
-            self->rear = NULL;
-        }
-    });
-}
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "EVBarrageModelProtocol.h"
 
 @interface EVBorderLabel : UILabel
 
 @property (nonatomic, assign) CGFloat strokeWidth;
 @property (nonatomic, strong) UIColor *strokeColor;
 
-@end
+@property (nonatomic, strong) id<EVBarrageModelProtocol> model;
 
-NS_ASSUME_NONNULL_END
+@end

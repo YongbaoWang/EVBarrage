@@ -37,6 +37,15 @@ typedef NS_ENUM(NSUInteger, EVBarragePriority) {
 @property (nonatomic, assign) EVBarragePriority priority;
 
 /**
+ 是否支持点击
+ */
+@property (nonatomic, assign, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
+
+
+//========以下属性，无需赋值
+//====================================================
+
+/**
  弹幕开始位置（无需赋值，内部会自动计算）
  */
 @property (nonatomic, assign) CGRect startFrame;

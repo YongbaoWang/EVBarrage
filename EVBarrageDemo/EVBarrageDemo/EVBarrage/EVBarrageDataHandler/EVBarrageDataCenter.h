@@ -11,6 +11,8 @@
 
 @interface EVBarrageDataCenter : NSObject
 
+@property (nonatomic, assign) int maxCapacity;
+
 - (instancetype)init NS_UNAVAILABLE;
 
 //最大可处理弹幕数量
@@ -19,5 +21,7 @@
 - (void)addBarrage:(id<EVBarrageModelProtocol>)model;
 
 - (id<EVBarrageModelProtocol>)nextBarrage;
+
+- (void)clearAll;
 
 @end

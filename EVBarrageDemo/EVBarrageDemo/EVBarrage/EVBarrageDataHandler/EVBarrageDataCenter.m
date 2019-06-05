@@ -22,8 +22,6 @@
 
 @property (nonatomic, strong) dispatch_queue_t concurrentQueue;
 
-@property (nonatomic, assign) int maxCapacity;
-
 @end
 
 @implementation EVBarrageDataCenter
@@ -96,9 +94,6 @@ if (queue.size > 0) { \
 }
 
 - (id<EVBarrageModelProtocol>)nextBarrage {
-    static int n = 0;
-//    printf("已处理：%d\n",++n);
-    
     id<EVBarrageModelProtocol> model = nil;
     
     EVBarrageValidNext(self.highestQueue)
@@ -113,5 +108,15 @@ if (queue.size > 0) { \
 }
 
 #undef EVBarrageValidNext
+
+- (void)clearAll {
+    [self.highestQueue freeAll];
+    [self.higherQueue freeAll];
+    [self.highQueue freeAll];
+    [self.normalQueue freeAll];
+    [self.lowQueue freeAll];
+    [self.lowerQueue freeAll];
+    [self.lowestQueue freeAll];
+}
 
 @end
