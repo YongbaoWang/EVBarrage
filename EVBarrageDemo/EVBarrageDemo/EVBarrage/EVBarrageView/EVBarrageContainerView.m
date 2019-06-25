@@ -90,7 +90,7 @@ if ([NSThread isMainThread]) { \
                 size.width = _minTextWidth;
             }
             
-            CGFloat lastSpeed = ((x + lastTextWidth)/model.duration);
+//            CGFloat lastSpeed = ((x + lastTextWidth)/model.duration);
             CGFloat currentSpeed = ((x + size.width)/model.duration);
             
             model.delay = (size.width + _minIntervalBetweenTwoBarrage) / currentSpeed;
@@ -129,6 +129,7 @@ if ([NSThread isMainThread]) { \
             [self saveReuseView:view withModel:model];
         }];
         
+        
 //        CGFloat timeInterval = 0.02;
 //        CGFloat stepSize = (model.startFrame.origin.x - model.endFrame.origin.x)/(model.duration/timeInterval);
 //
@@ -141,6 +142,12 @@ if ([NSThread isMainThread]) { \
 //            }
 //            NSLog(@"aa");
 //        }];
+        
+//        CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+//        animation.values = @[@(model.startFrame.origin),@(model.endFrame.origin)];
+//        animation.duration = model.duration;
+//        [view.layer addAnimation:animation forKey:@"a"];
+        
     });
 }
 
@@ -160,11 +167,6 @@ if ([NSThread isMainThread]) { \
             view = [self.delegate EVBarrageContainerView:self createDisplayViewForModel:model];
             NSAssert(view != nil, @"EVBarrageContainerView:displayViewForModel: can't be nil.");
             [self addSubview:view];
-            
-            if (model.isUserInteractionEnabled) {
-                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(displayViewTapAction:)];
-                [view addGestureRecognizer:tap];
-            }
         }
     }
     
@@ -196,17 +198,28 @@ if ([NSThread isMainThread]) { \
     self.cache[model.reuseIdentifier] = arrM;
 }
 
-- (void)displayViewTapAction:(UITapGestureRecognizer *)tap {
-    UIView *view = tap.view;
-    id obj = objc_getAssociatedObject(view, @selector(reuseViewWithModel:));
-    if ([obj conformsToProtocol:@protocol(EVBarrageModelProtocol)]) {
-        id<EVBarrageModelProtocol> model = (id<EVBarrageModelProtocol>)obj;
-        if (self.delegate && [self.delegate respondsToSelector:@selector(EVBarrageContainerView:didTapDisplayView:withModel:)]) {
-            [self.delegate EVBarrageContainerView:self didTapDisplayView:view withModel:model];
-        }
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (event.type == UIEventTypeTouches) {
+        CGPoint point = [touches.anyObject locationInView:self];
+        [self triggerActionWithPoint:point];
     }
 }
 
+- (void)triggerActionWithPoint:(CGPoint)point {
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (view.isUserInteractionEnabled && [view.layer.presentationLayer hitTest:point]) {
+            id obj = objc_getAssociatedObject(view, @selector(reuseViewWithModel:));
+            if ([obj conformsToProtocol:@protocol(EVBarrageModelProtocol)]) {
+                id<EVBarrageModelProtocol> model = (id<EVBarrageModelProtocol>)obj;
+                if (self.delegate && [self.delegate respondsToSelector:@selector(EVBarrageContainerView:didTapDisplayView:withModel:)]) {
+                    [self.delegate EVBarrageContainerView:self didTapDisplayView:view withModel:model];
+                }
+            }
+            
+            *stop = YES;
+        }
+    }];
+}
 
 #pragma mark - PROPERTY
 
